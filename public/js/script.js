@@ -191,16 +191,15 @@ function getAddress(){
 function displayQrCode(){
   const data = getFormData();
   emptyField = checkEmptyFields();
-  const notifClass = emptyField !== '' ? 'error' : 'success'
+  const notifClass = emptyField !== '' ? 'error' : 'success';
+  let message;
   if(emptyField !== ''){
-    let message = `${emptyField} must be provided`;
+    message = `${emptyField} must be provided`;
     notify(emptyField, notifClass, message);
   }else{
-    let notification = document.getElementById('notification');
     let name = document.getElementById('first-name').value.trim()
-    notification.className = "notification success";
-    notification.style.display = "block"
-    notification.textContent = `Dear ${name}, your business card has been created`;
+    message = `Dear ${name}, your business card has been created`
+    notify(emptyField, 'success', message);
     document.getElementById('qrcode').style.display = "block";
     document.getElementById('download-qr-code').style.display = "block";
     summaryInfos.style.height = "88%";
@@ -250,11 +249,11 @@ function notify(emptyField, fieldClass, message){
     summaryInfos.style.height = "341px";
   }else{
     notification.textContent = message;
+    notification.className = ` notification ${fieldClass}`;
   }
 
   notification.style.display = "block";
   setTimeout(function() {
     notification.style.display = "none";
-    // formatEmail.style.display = "none";
   }, 8000)
 }
