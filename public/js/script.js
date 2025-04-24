@@ -74,11 +74,6 @@ function updateSummaryAndQRCode() {
   const lastName = document.getElementById('last-name').value.trim();
   
   const data = getFormData();
-  
-  const globeSection = document.getElementById('globe-section');
-  const personalInfos = document.querySelector('.personal-infos');
-  globeSection.style.marginTop = "-106px";
-  personalInfos.style.marginTop = "40px";
 
   const address = getAddress();
 
@@ -202,7 +197,9 @@ function displayQrCode(){
     notify(emptyField, 'success', message);
     document.getElementById('qrcode').style.display = "block";
     document.getElementById('download-qr-code').style.display = "block";
-    summaryInfos.style.height = "88%";
+    document.getElementById('globe').style.marginTop = "-6vh"
+    const personalInfos = document.querySelector('.personal-infos');
+    personalInfos.style.marginTop = "3vh";
   }
 }
 
@@ -246,7 +243,6 @@ function notify(emptyField, fieldClass, message){
     notification.className = ` notification ${fieldClass}`;
     document.getElementById('qrcode').style.display = "none";
     document.getElementById('download-qr-code').style.display = "none";
-    summaryInfos.style.height = "341px";
   }else{
     notification.textContent = message;
     notification.className = ` notification ${fieldClass}`;
@@ -255,5 +251,5 @@ function notify(emptyField, fieldClass, message){
   notification.style.display = "block";
   setTimeout(function() {
     notification.style.display = "none";
-  }, 8000)
+  }, 5000)
 }
